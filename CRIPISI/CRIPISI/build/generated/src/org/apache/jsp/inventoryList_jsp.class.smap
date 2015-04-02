@@ -1,0 +1,27 @@
+SMAP
+inventoryList_jsp.java
+JSP
+*S JSP
+*F
++ 0 inventoryList.jsp
+inventoryList.jsp
++ 1 Template.jsp
+Template.jsp
+*L
+5,32:63
+5#1,166:95
+37#0,55:260
+91:381,11
+92,2:392
+93:443,5
+93,2:396
+94:461,5
+94,2:400
+95:479,5
+95,2:404
+96:497,5
+96,2:408
+97:515,5
+97,7:412
+103,47:317
+*E

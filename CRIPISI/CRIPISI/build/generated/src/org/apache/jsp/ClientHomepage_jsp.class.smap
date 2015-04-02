@@ -1,0 +1,14 @@
+SMAP
+ClientHomepage_jsp.java
+JSP
+*S JSP
+*F
++ 0 ClientHomepage.jsp
+ClientHomepage.jsp
++ 1 Template.jsp
+Template.jsp
+*L
+1,36:49
+5#1,166:85
+36#0,263:250
+*E
