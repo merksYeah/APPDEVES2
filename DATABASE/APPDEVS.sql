@@ -32,7 +32,7 @@ CREATE TABLE `action` (
   PRIMARY KEY (`actionId`,`roleId`),
   KEY `fk_action_role1_idx` (`roleId`),
   CONSTRAINT `fk_action_role1` FOREIGN KEY (`roleId`) REFERENCES `role` (`roleId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,6 +41,7 @@ CREATE TABLE `action` (
 
 LOCK TABLES `action` WRITE;
 /*!40000 ALTER TABLE `action` DISABLE KEYS */;
+INSERT INTO `action` VALUES (1,1,NULL,'1');
 /*!40000 ALTER TABLE `action` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -121,7 +122,7 @@ CREATE TABLE `group` (
   `group_name` varchar(45) DEFAULT NULL,
   `flag` binary(1) DEFAULT '1',
   PRIMARY KEY (`groupId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,6 +131,7 @@ CREATE TABLE `group` (
 
 LOCK TABLES `group` WRITE;
 /*!40000 ALTER TABLE `group` DISABLE KEYS */;
+INSERT INTO `group` VALUES (1,NULL,'1');
 /*!40000 ALTER TABLE `group` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -168,6 +170,8 @@ CREATE TABLE `product` (
   `productName` varchar(100) NOT NULL,
   `quantity` int(11) DEFAULT NULL,
   `MSRP` float DEFAULT NULL,
+  `package` varchar(45) DEFAULT NULL,
+  `net_weight_per_package` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`productCode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -178,7 +182,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES ('AL10795944','GLYCERIN',77,70.49),('AN58515935','OCTINOXATE',59,91.82),('CC77504664','Esomeprazole strontium',38,65.52),('CF06497587','NITROGEN',91,19.98),('CO29214816','morphine sulfate',16,13.22),('CY19433675','CEFTRIAXONE',33,67.29),('EZ75090862','Metaxalone',76,72.47),('FQ47552017','Norepinephrine',80,65.34),('GO51290452','Docetaxel',2,74.91),('GS47220757','levetiracetam',93,55.19),('HA56306389','Mineral oil, petrolatum, phenylephrine hcl',53,36.12),('HB46449310','Hand Sanitizer Wipes',86,94.63),('HF16624321','Petrolatum',88,12.08),('HP13873178','Oxygen',87,10.42),('IT49465825','Ergotamine Tartrate and Caffeine',65,45.56),('JU49751425','SERTRALINE HYDROCHLORIDE',73,18.49),('JX91927617','Diazepam',66,37.29),('KA89809641','FERROSOFERRIC PHOSPHATE',45,0.55),('KS89830292','CARBAMAZEPINE',16,33.05),('KW19735990','Mineral Oil',65,49.11),('KX76513031','CHAMOMILLA',97,63.29),('KZ87426520','Primidone',92,56.99),('LX41853342','lamotrigine',16,68.58),('MI69508074','Quetiapine fumarate',90,86.75),('NR67285972','fenofibrate',56,81.3),('PO41449633','not applicable',75,26.61),('QC24408415','DEXTROSE, SODIUM CHLORIDE, and POTASSIUM CHLORIDE',81,30.72),('RD48389518','risperidone',47,0.42),('RY06467629','Bupropion Hydrochloride',77,34.03),('RY53776183','Johnson Grass Smut',90,88.25),('SD05839355','EDETATE CALCIUM DISODIUM',97,4.04),('SN10523281','Arnica Nettle Burn and Bite',6,82.91),('UA00337793','clorazepate dipotassium',26,98.97),('UR86040921','Tuna',46,24.22),('UV32258208','Undecylenic Acid',45,85.71),('VE74214772','Loperamide HCl',73,72.79),('VO73505007','Trazodone Hydrochloride',17,99.61),('VP16186549','Pseudoephedrine HCl',58,6.31),('WK81405017','Enalapril maleate and hydrochlorothiazide',37,19.11),('WQ35959415','Octinoxate and Titanium Dioxide',17,22.97),('WT44400545','Felodipine',45,79.44),('XH85823141','METHYLPHENIDATE HYDROCHLORIDE',88,95.86),('XL44260074','Furosemide',72,48.26),('XP23070722','Selenium Sulfide',81,80.45),('XX74856166','Ciclopirox',79,15.76),('YM14883537','aspirin',21,29.94),('YU00432822','Renagel',91,24.53),('ZO33150550','Wheat Pollen',80,41.91);
+INSERT INTO `product` VALUES ('AL10795944','GLYCERIN',77,70.49,'Drums','15'),('AN58515935','OCTINOXATE',59,91.82,'Drums','13'),('CC77504664','Esomeprazole strontium',38,65.52,'Bags','14'),('CF06497587','NITROGEN',91,19.98,'Bags','27'),('CO29214816','morphine sulfate',16,13.22,'Bags','23'),('CY19433675','CEFTRIAXONE',33,67.29,'Drums','86'),('EZ75090862','Metaxalone',76,72.47,'Drums','40'),('FQ47552017','Norepinephrine',80,65.34,'Drums','100'),('GO51290452','Docetaxel',2,74.91,'Drums','38'),('GS47220757','levetiracetam',93,55.19,'Drums','22'),('HA56306389','Mineral oil, petrolatum, phenylephrine hcl',53,36.12,'Drums','55'),('HB46449310','Hand Sanitizer Wipes',86,94.63,'Drums','66'),('HF16624321','Petrolatum',88,12.08,'Drums','44'),('HP13873178','Oxygen',87,10.42,'Drums','23'),('IT49465825','Ergotamine Tartrate and Caffeine',65,45.56,'Drums','22'),('JU49751425','SERTRALINE HYDROCHLORIDE',73,18.49,'Bags','123'),('JX91927617','Diazepam',66,37.29,'Bags','12'),('KA89809641','FERROSOFERRIC PHOSPHATE',45,0.55,'Bags','32'),('KS89830292','CARBAMAZEPINE',16,33.05,'Bags','21'),('KW19735990','Mineral Oil',65,49.11,'Bags','23'),('KX76513031','CHAMOMILLA',97,63.29,'Bags','39'),('KZ87426520','Primidone',92,56.99,'Bags','33'),('LX41853342','lamotrigine',16,68.58,'Bags','32'),('MI69508074','Quetiapine fumarate',90,86.75,'Drums','23'),('NR67285972','fenofibrate',56,81.3,'Drums','25'),('PO41449633','not applicable',75,26.61,'Drums','24'),('QC24408415','DEXTROSE, SODIUM CHLORIDE, and POTASSIUM CHLORIDE',81,30.72,'Bags','25'),('RD48389518','risperidone',47,0.42,'Bags','23'),('RY06467629','Bupropion Hydrochloride',77,34.03,'Drums','32'),('RY53776183','Johnson Grass Smut',90,88.25,'Bags','42'),('SD05839355','EDETATE CALCIUM DISODIUM',97,4.04,'Drums','42'),('SN10523281','Arnica Nettle Burn and Bite',6,82.91,'Drums','213'),('UA00337793','clorazepate dipotassium',26,98.97,'Drums','180'),('UR86040921','Tuna',46,24.22,'Bags','170'),('UV32258208','Undecylenic Acid',45,85.71,'Bags','66'),('VE74214772','Loperamide HCl',73,72.79,'Bags','99'),('VO73505007','Trazodone Hydrochloride',17,99.61,'Bags','88'),('VP16186549','Pseudoephedrine HCl',58,6.31,'Drums','128'),('WK81405017','Enalapril maleate and hydrochlorothiazide',37,19.11,'Drums','78'),('WQ35959415','Octinoxate and Titanium Dioxide',17,22.97,'Drums','150'),('WT44400545','Felodipine',45,79.44,'Drums','34'),('XH85823141','METHYLPHENIDATE HYDROCHLORIDE',88,95.86,'Bags','126'),('XL44260074','Furosemide',72,48.26,'Bags','34'),('XP23070722','Selenium Sulfide',81,80.45,'Bags','53'),('XX74856166','Ciclopirox',79,15.76,'Bags','353'),('YM14883537','aspirin',21,29.94,'Bags','23'),('YU00432822','Renagel',91,24.53,'Drums','32'),('ZO33150550','Wheat Pollen',80,41.91,'Drums','12');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,11 +285,11 @@ CREATE TABLE `role` (
   `roleId` int(11) NOT NULL AUTO_INCREMENT,
   `groupId` int(11) NOT NULL,
   `role_name` varchar(45) DEFAULT NULL,
-  `flag` varchar(45) DEFAULT '1',
+  `flag` binary(1) DEFAULT '1',
   PRIMARY KEY (`roleId`,`groupId`),
   KEY `fk_role_group1_idx` (`groupId`),
   CONSTRAINT `fk_role_group1` FOREIGN KEY (`groupId`) REFERENCES `group` (`groupId`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -294,6 +298,7 @@ CREATE TABLE `role` (
 
 LOCK TABLES `role` WRITE;
 /*!40000 ALTER TABLE `role` DISABLE KEYS */;
+INSERT INTO `role` VALUES (1,1,NULL,'1');
 /*!40000 ALTER TABLE `role` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -425,7 +430,8 @@ CREATE TABLE `user` (
   `password` varchar(45) NOT NULL,
   `flag` binary(1) NOT NULL DEFAULT '1',
   `accountType` char(8) DEFAULT NULL,
-  PRIMARY KEY (`userId`)
+  PRIMARY KEY (`userId`),
+  UNIQUE KEY `username_UNIQUE` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=201 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -463,6 +469,7 @@ CREATE TABLE `user_has_group` (
 
 LOCK TABLES `user_has_group` WRITE;
 /*!40000 ALTER TABLE `user_has_group` DISABLE KEYS */;
+INSERT INTO `user_has_group` VALUES (1,1);
 /*!40000 ALTER TABLE `user_has_group` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -475,4 +482,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-02 22:32:25
+-- Dump completed on 2015-04-03 19:10:14
