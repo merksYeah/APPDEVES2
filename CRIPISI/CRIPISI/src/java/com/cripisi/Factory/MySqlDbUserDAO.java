@@ -28,7 +28,7 @@ public class MySqlDbUserDAO implements UserDAO {
     private static final String SQL_CREATE_NEW_USER = "insert into user(username,password) values (?,?)";
     private static final String SQL_GET_RIGHTS = "select a.action, a.flag\n"+
                                                  "from user u join user_has_group ug on u.userId = ug.userId\n"+
-                                                  "join memberof g on g.groupId = ug.groupId\n"+
+                                                  "join user_has_group g on g.groupId = ug.groupId\n"+
                                                     "join role r on r.groupId = g.groupId\n"+
                                                     "join action a on a.roleId = r.roleId\n"+
                                                     "where username = ? and password = ?";

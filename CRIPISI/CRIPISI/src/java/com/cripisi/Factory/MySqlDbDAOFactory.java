@@ -9,10 +9,13 @@ import com.cripisi.Employee.EmployeeDAO;
 
 import com.cripisi.User.UserDAO;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
 
 /**
  *
@@ -23,14 +26,15 @@ public class MySqlDbDAOFactory extends DAOFactory {
        private static final String password="omegaman123";
        private static final String url="jdbc:mysql://localhost:3306/mydb";
        private static final String driverName="com.mysql.jdbc.Driver";  
+       private static final String dataSourceName ="java:comp/env/jdbc/appsdevDB";
     
        public static Connection createConnection() {
            try {
-            Class.forName(driverName);
-            Connection conn = 
-                    DriverManager.getConnection(url, username, password);
+            Context ctx = new InitialContext();
+            DataSource ds = (DataSource) ctx.lookup(dataSourceName);
+            Connection conn = ds.getConnection();
             return conn;
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException | NamingException ex) {
             Logger.getLogger(MySqlDbDAOFactory.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
@@ -51,5 +55,6 @@ public class MySqlDbDAOFactory extends DAOFactory {
       return new MySqlDBEmployeeDAO();
   }
   
+
     
 }
