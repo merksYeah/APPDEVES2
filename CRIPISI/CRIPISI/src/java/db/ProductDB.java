@@ -51,7 +51,7 @@ public class ProductDB {
                  two.setProductCode(rs.getString("productCode"));
                  two.setQuantity(Integer.parseInt(rs.getString("quantity")));
                  two.setPackageType(rs.getString("package"));
-                 two.setNetWeightPerPackage(Integer.parseInt(rs.getString("netweightperpackage")));
+                 two.setNetWeightPerPackage(Integer.parseInt(rs.getString("net_weight_per_package")));
                  searches.add(two);
                  
              }
@@ -83,7 +83,7 @@ public class ProductDB {
                  two.setProductCode(rs.getString("productCode"));
                  two.setQuantity(rs.getInt("quantity"));
                  two.setPackageType(rs.getString("package"));
-                 two.setNetWeightPerPackage(rs.getInt("netweightperpackage"));
+                 two.setNetWeightPerPackage(rs.getInt("net_weight_per_package"));
                  searches.add(two);
                  
              }

@@ -25,6 +25,7 @@
         
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
 
   </head>
 
@@ -59,6 +60,7 @@
                             </span>
                             </div-->
                         <div class="row mt">
+                            
                   <div class="col-md-12">
                       <div class="content-panel">
                           <form action ="Search" method = "post"><div class="input-group custom-search-form col-md-2">
@@ -71,7 +73,7 @@
                                 </button>
                             </span>
                             </div></form>
-	                  	  	  <table class="table table-bordered table-striped table-condensed">
+	                  	  	  <table class="table table-bordered table-striped table-condensed" id='what'>
 	                  	  	  <h4><i class="fa fa-angle-right"></i> Products</h4>
                                           
                                           
@@ -84,7 +86,7 @@
                                   <th><i class=" fa fa-edit"></i> Net Weight</th>
 								  <th><i class=" fa fa-edit"></i> Quantity</th>
 								  <th><i class=" fa fa-edit"></i> Edit</th>
-                                  <th></th>
+                                  
                               </tr>
                               </thead>
                               <tbody>
@@ -127,21 +129,19 @@
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-
+   
 
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
-
+ 
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
     <!--script for this page-->
-    
-  <script>
-      //custom select box
+    <script>
+        $(document).ready( function () {
+    $('#what').DataTable();
+    } );
+    </script>
 
-      $(function(){
-          $('select.styled').customSelect();
-      });
-
-  </script>
 
   </body>
 </html>
