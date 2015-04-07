@@ -4,7 +4,7 @@
     Author     : deathman28
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,6 +24,7 @@
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
     <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="assets/DataTables-1.10.6/media/css/jquery.dataTables.min.css">
 
   </head>
 
@@ -43,51 +44,39 @@
           	<div class="row mt">
           		<div class="col-lg-12">
                   <div class="form-panel">
-				  
-                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Purchase Orders</h4>
-					    <div class="input-group custom-search-form col-md-2">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                        <div class="row mt">
+		   <div class="row mt">
                   <div class="col-md-12">
-                      <div class="content-panel">
-                          <table class="table table-bordered table-striped table-condensed">
-	                  	  	  <h4><i class="fa fa-angle-right"></i> Products</h4>
+                          <table id = "what" class="table table-bordered table-striped table-condensed">
+	                  	  	  <h4><i class="fa fa-angle-right"></i> Orders</h4>
 	                  	  	  <hr>
                               <thead>
                               <tr>
-                                  <th><i class="fa fa-barcode"></i> P.O.ID</th>
+                                  <th><i class="fa fa-barcode"></i> S.O.ID</th>
                                   <th class="hidden-phone"><i class="fa fa-truck"></i> Deliver To</th>
-                                  <th><i class="fa fa-calendar"></i> Delivery Date</th>
-                                  <th><i class=" fa fa-edit"></i> Mode of Payment</th>
-								  <th><i class=" fa fa-edit"></i> Status</th>
+                                  <th><i class="fa fa-calendar"></i> Date Issued</th>
+                                  <th><i class=" fa fa-calendar"></i> Order Date</th>
+                                  <th><i class=" fa fa-calendar"></i> Delivery Date</th>
+                                  <th><i class=" fa fa-edit"></i> Status</th>
                               </tr>
                               </thead>
                               <tbody>
-                              <tr>
-                                  <td><a data-toggle="modal" href="#ModalItems">DCM0012</label></td>
-                                  <td class="hidden-phone">24 FC LAGUNA ST</td>
-                                  <td>2015-05-03 </td>
-                                  <td>Terms</td>
-                                  <td>DELIVERED</td>
-                              </tr>
-							  <tr>
-                                  <td><label>DCM0013</label></td>
-                                  <td class="hidden-phone">28 SANTA MARIA ST</td>
-                                  <td>2015-07-08 </td>
-                                  <td>CASH</td>
-                                  <td>ON HOLD</td>
-                              </tr>
+                                  <c:forEach items="${orders}" var="SalesOrder">
+                                   <tr>
+                                          <td><a href="ShowOrderDetails?orderid=<c:out value="${SalesOrder.order_id}"/>"><c:out value="${SalesOrder.order_id}"/></td>
+                                          <td><c:out value="${SalesOrder.deliver_to}"/></td>
+                                          <td><c:out value="${SalesOrder.date_issued}"/></td>
+                                          <td><c:out value="${SalesOrder.order_date}"/></td>
+                                          <td><c:out value="${SalesOrder.date_delivered}"/></td>
+                                          <td><c:out value="${SalesOrder.statusCode}"/></td>
+                                          
+                                  </tr>
+                                  </c:forEach>
+                                  
                             
                               </tbody>
                           </table>
 						  
-                      </div><!-- /content-panel -->
+                     
 					 
                   </div><!-- /col-md-12 -->
 				  
@@ -98,73 +87,7 @@
                   </div>
           		</div><!-- col-lg-12-->      	
           	</div><!-- /row -->
-          	
-            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="ModalItems" class="modal fade">
-		              <div class="modal-dialog">
-		                  <div class="modal-content">
-		                      <div class="modal-header">
-		                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                          <h4 class="modal-title">Purchase Order Number: DCM0012  </h4>
-		                      </div>
-		                      <div class="modal-body">
-		                         <table class="table table-bordered table-striped table-condensed">
-	                  	  	  <h4><i class="fa fa-angle-right"></i> Products</h4>
-	                  	  	  <hr>
-                              <thead>
-                              <tr>
-                                  <th><i class="fa fa-barcode"></i> ProductID</th>
-                                  <th class="hidden-phone"><i class="fa fa-question-circle"></i> Product Name</th>
-                                  <th><i class="fa fa-bookmark"></i> Quantity</th>
-                                  <th><i class=" fa fa-edit"></i> Unit Price</th>
-								  <th><i class=" fa fa-edit"></i> Total Price</th>
-                              </tr>
-                              </thead>
-                              <tbody>
-                              <tr>
-                                  <td><label>PAC</label></td>
-                                  <td class="hidden-phone">Chloride</td>
-                                  <td>5 </td>
-                                  <td>32</td>
-                                  <td>160</td>
-                              </tr>
-							  <tr>
-                                  <td><label>PAC</label></td>
-                                  <td class="hidden-phone">Chloride</td>
-                                  <td>5 </td>
-                                  <td>32</td>
-                                  <td>160</td>
-                              </tr>
-                            
-                            
-                              </tbody>
-                          </table>
-		                      </div>
-		                  </div>
-		              </div>
-		          </div>
-				  
-				   <div aria-hidden="false" aria-labelledby="ModalItemsLabel" role="dialog" tabindex="-1" id="ModalItems" class="modal fade">
-		              <div class="modal-dialog">
-		                  <div class="modal-content">
-		                      <div class="modal-header">
-		                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                          <h4 class="modal-title">Proceed to product information</h4>
-		                      </div>
-		                      <div class="modal-body">
-		                          <p>Is the information entered below correct?</p>
-		                      </div>
-		                      <div class="modal-footer">
-		                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-		                          <a class="btn btn-theme btn-link" type="button" href = "login2.html">Proceed</a>
-		                      </div>
-		                  </div>
-		              </div>
-		          </div>
-          	
-          	
-          	
-          	
-          	
+          		
 		</section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
@@ -196,10 +119,14 @@
 	
 	<script type="text/javascript" src="assets/js/bootstrap-inputmask/bootstrap-inputmask.min.js"></script>
 	
-	
+	<script src="assets/DataTables-1.10.6/media/js/jquery.dataTables.min.js"></script>
+        <script>
+        $(document).ready( function () {
+    $('#what').DataTable();
+    } );
+    </script>
 	<script src="assets/js/form-component.js"></script>    
-    
-    
+     
   <script>
       //custom select box
 

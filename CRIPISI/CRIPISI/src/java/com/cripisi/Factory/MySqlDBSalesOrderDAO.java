@@ -5,10 +5,12 @@
  */
 package com.cripisi.Factory;
 
+import com.cripisi.Customer.Customer;
 import com.cripisi.Product.Product;
 import com.cripisi.SalesOrder.SalesOrder;
 import com.cripisi.SalesOrder.SalesOrderDAO;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,6 +30,7 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
     private static final String SQL_ADD_PRODUCTS_TO_SALES_ORDER="insert into salesorder_has_product (productCode, salesorderid, orderQuantity) values(?,?,?)";
     private static final String SQL_GET_ALL_SALES_ORDER="select * from salesorder where clientid=?";
     private static final String SQL_UPDATE_SALES_ORDER="update salesorder set status=?";
+    private static final String SQL_GET_CUSTOMER_ORDERS = "select SalesOrderId,deliver_to,date_issued,order_date,date_delivered,statusCode from salesorder where customer_tin = ?";
     
     @Override
     public ArrayList<Product> getOrderedProducts(SalesOrder so){
@@ -35,7 +38,7 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
         ArrayList<Product> productsList = new ArrayList<>();
         try {
             PreparedStatement pstmt = MySqlDbDAOFactory.createConnection().prepareStatement( SQL_GET_ALL_ORDERED_PRODUTS);
-            pstmt.setInt(1, so.getSalesOrderID());
+            pstmt.setInt(1, so.getOrder_id());
             rs = pstmt.executeQuery();
             while(rs.next())
             {
@@ -104,7 +107,7 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
                conn.setAutoCommit(false);
                 for (int i=0; i<product.length; i++){
                     pstmt.setString(1, product[i]);
-                    pstmt.setInt(2, so.getSalesOrderID());
+                    pstmt.setInt(2, so.getOrder_id());
                     pstmt.setInt(3, Integer.parseInt(quantity[i]));
                     pstmt.addBatch();
             }
@@ -131,7 +134,7 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
             rs = pstmt.executeQuery();
             while(rs.next()){
                 SalesOrder so = new SalesOrder();
-                so.setSalesOrderID(rs.getInt("SalesOrderID"));
+                so.setOrder_id(rs.getInt("SalesOrderID"));
                 so.setClientID(rs.getInt("clientID"));
                 so.setDeliver_to(rs.getString("deliver_to"));
                 so.setComments(rs.getString("comments"));                        
@@ -166,5 +169,67 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
                  Logger.getLogger(MySqlDBEmployeeDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
         }
+    }
+
+    @Override
+    public ArrayList<SalesOrder> getSalesOrdersByCustomer(Customer one) {
+        ResultSet rs = null;
+         ArrayList<SalesOrder> orderList = new ArrayList<SalesOrder>();
+          Connection conn = MySqlDbDAOFactory.createConnection();
+           try {            
+             PreparedStatement pstmt = conn.prepareStatement(SQL_GET_CUSTOMER_ORDERS );
+                pstmt.setInt(1,one.getCustomerTin());
+               	rs = pstmt.executeQuery();
+                while(rs.next()){
+                    SalesOrder two = new SalesOrder();
+                    two.setOrder_id(rs.getInt("SalesOrderId"));
+                    two.setDeliver_to(rs.getString("deliver_to"));
+                    two.setDate_issued(rs.getDate("date_issued"));
+                    two.setOrder_date(rs.getDate("order_date"));
+                    two.setDate_delivered(rs.getDate("date_delivered"));
+                    two.setStatusCode(rs.getString("statusCode"));
+                    orderList.add(two);
+                }
+        	
+
+            } catch (SQLException ex) {
+                Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                 try {
+                    conn.close();
+                 } catch (SQLException ex) {
+                     Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+            }
+           return orderList;
+    }
+
+    @Override
+    public ArrayList<Product> getOrderDetailsByOrder(SalesOrder so) {
+       ResultSet rs = null;
+         ArrayList<Product> productList = new ArrayList<Product>();
+          Connection conn = MySqlDbDAOFactory.createConnection();
+           try {            
+             PreparedStatement pstmt = conn.prepareStatement(SQL_GET_CUSTOMER_ORDERS );
+                pstmt.setInt(1,so.getOrder_id());
+               	rs = pstmt.executeQuery();
+                while(rs.next()){
+                    Product two = new Product();
+                    two.setProductCode(rs.getString("productCode"));
+                    two.setQuantity(rs.getInt("orderQuantity"));
+                    productList.add(two);
+                }
+        	
+
+            } catch (SQLException ex) {
+                Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                 try {
+                    conn.close();
+                 } catch (SQLException ex) {
+                     Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+            }
+           return productList;
     }
 }

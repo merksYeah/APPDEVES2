@@ -5,6 +5,7 @@
  */
 package com.cripisi.SalesOrder;
 
+import com.cripisi.Customer.Customer;
 import com.cripisi.Product.Product;
 import java.util.ArrayList;
 /**
@@ -22,4 +23,8 @@ public interface SalesOrderDAO {
     public ArrayList<SalesOrder> getAllSalesOrder();
     
     public void updateSalesOrder(SalesOrder so);
+    
+    public ArrayList<SalesOrder> getSalesOrdersByCustomer(Customer one);
+    
+    public ArrayList<Product> getOrderDetailsByOrder(SalesOrder so);
 }
