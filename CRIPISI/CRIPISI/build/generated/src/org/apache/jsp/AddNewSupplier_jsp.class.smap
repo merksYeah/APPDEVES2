@@ -1,0 +1,21 @@
+SMAP
+AddNewSupplier_jsp.java
+JSP
+*S JSP
+*F
++ 0 AddNewSupplier.jsp
+AddNewSupplier.jsp
++ 1 LoadTemplate.jsp
+LoadTemplate.jsp
++ 2 ClientTemplate.jsp
+ClientTemplate.jsp
+*L
+5,36:60
+1#1,4:96
+5:250,8
+6:258
+5#2,211:259
+6#1,2:470
+7,4:102
+40#0,126:106
+*E

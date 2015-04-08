@@ -7,6 +7,7 @@ package com.cripisi.Factory;
 
 import com.cripisi.Product.Product;
 import com.cripisi.Product.ProductDAO;
+import com.cripisi.Supplier.Supplier;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,6 +26,7 @@ class MySqlDBProductDAO implements ProductDAO{
     public static final String SQL_GET_LIST="Select * from product";
     public static final String SQL_SEARCH_LIST="Select * from product where productName LIKE ? or productCode LIKE ?";
     public static final String SQL_UPDATE_PRODUCT_DETAILS="update product set quantity=?";
+    public static final String SQL_UPDATE_PRODUCT_SUPPLIER="update product set supplierID=? where productCode = '?'";
     
     @Override
     public void addItem(Product two) {
@@ -115,6 +117,29 @@ class MySqlDBProductDAO implements ProductDAO{
             PreparedStatement pstmt = MySqlDbDAOFactory.createConnection().prepareStatement( SQL_UPDATE_PRODUCT_DETAILS);
             pstmt.setInt(1, one.getQuantity());
             pstmt.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(MySqlDBProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+             try {
+                 MySqlDbDAOFactory.createConnection().close();
+             } catch (SQLException ex) {
+                 Logger.getLogger(MySqlDBProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+             }
+        }
+    }
+
+    @Override
+    public void updateSupplier(Supplier supp, String[] products) {
+        Connection conn = MySqlDbDAOFactory.createConnection();
+        try {
+            PreparedStatement pstmt = MySqlDbDAOFactory.createConnection().prepareStatement( SQL_UPDATE_PRODUCT_SUPPLIER);
+            pstmt.setInt(1, supp.getSupplierID());
+            for (int i=0; i<products.length; i++){
+                    pstmt.setString(2, products[i]);
+                    pstmt.addBatch();
+            }
+            	pstmt.executeBatch();
+        	conn.commit();
         } catch (SQLException ex) {
             Logger.getLogger(MySqlDBProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{

@@ -1,13 +1,10 @@
-<!-- 
+<%-- 
     Document   : NewPurchaseOrder
-    Created on : 03 8, 15, 9:21:52 AM
-    Author     : deathman28
--->
-<!--
-<%@ taglib prefix="c" 
-           uri="http://java.sun.com/jsp/jstl/core" %>
-<%@page contentType="text/html" pageEncoding="UTF-8"%> 
--->
+    Created on : Apr 8, 2015, 2:09:04 PM
+    Author     : Number 2
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>

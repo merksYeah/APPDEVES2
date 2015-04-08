@@ -5,6 +5,7 @@
  */
 package com.cripisi.Product;
 
+import com.cripisi.Supplier.Supplier;
 import java.util.ArrayList;
 
 /**
@@ -19,4 +20,6 @@ public interface ProductDAO {
     public ArrayList<Product> searchList(Product one);
     
     public void updateProduct(Product one);
+
+    public void updateSupplier(Supplier supp, String[] products);
 }

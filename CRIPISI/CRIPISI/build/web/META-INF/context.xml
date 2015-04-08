@@ -4,11 +4,7 @@
      type="javax.sql.DataSource"
      driverClassName="com.mysql.jdbc.Driver"
      username="root"
-<<<<<<< HEAD
-     password="Paramore1!"
-=======
      password="qw12qw12"
->>>>>>> e690f4618aacb800c111d177a53acd52e7753bed
      url="jdbc:mysql://localhost:3306/mydb"
      initialSize="100"
      maxActive="100"

@@ -11,6 +11,7 @@ import com.cripisi.Product.ProductDAO;
 import com.cripisi.PurchaseOrder.PurchaseOrderDAO;
 import com.cripisi.SalesOrder.SalesOrderDAO;
 import com.cripisi.User.UserDAO;
+import com.cripisi.Supplier.SupplierDAO;
 import java.sql.Connection;
 
 /**
@@ -26,6 +27,7 @@ public abstract class DAOFactory {
   public abstract ProductDAO getProductDAO();
   public abstract SalesOrderDAO getSalesOrderDAO();
   public abstract PurchaseOrderDAO getPurchaseOrderDAO();
+  public abstract SupplierDAO getSupplierDAO();
 
     
    public static DAOFactory getDAOFactory(int whichFactory){

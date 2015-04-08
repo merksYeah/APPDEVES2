@@ -1,0 +1,28 @@
+SMAP
+NewSupplier_jsp.java
+JSP
+*S JSP
+*F
++ 0 NewSupplier.jsp
+NewSupplier.jsp
++ 1 LoadTemplate.jsp
+LoadTemplate.jsp
++ 2 ClientTemplate.jsp
+ClientTemplate.jsp
++ 3 PlantManagerTemplate.jsp
+PlantManagerTemplate.jsp
+*L
+5,36:61
+1#1,23:97
+24:274,8
+25:282
+5#2,211:283
+25#1,2:494
+26,2:122
+27:514,8
+28:522
+5#3,43:523
+28#1,2:565
+29,4:126
+40#0,126:130
+*E
