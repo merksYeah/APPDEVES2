@@ -35,7 +35,7 @@
   <body>
 
   <section id="container" >
-      <%@include file="Template.jsp" %>
+      <%@include file="LoadTemplate.jsp" %>
   
 	  
       <!-- **********************************************************************************************************************************************************
@@ -60,7 +60,7 @@
                             </span>
                             </div-->
                         <div class="row mt">
-                            
+                          
                   <div class="col-md-12">
                       <div class="content-panel">
                           <form action ="Search" method = "post"><div class="input-group custom-search-form col-md-2">
@@ -80,6 +80,7 @@
 	                  	  	  <hr>
                               <thead>
                               <tr>
+                               
                                   <th><i class="fa fa-barcode"></i> Product ID</th>
                                   <th class="hidden-phone"><i class="fa fa-question-circle"></i> Product Name</th>
                                   <th><i class="fa fa-bookmark"></i> Package</th>
@@ -91,7 +92,9 @@
                               </thead>
                               <tbody>
                           <c:forEach items="${products}" var="product">
+                             
                                   <tr>
+                                        <a href="Search?productCode=<c:out value="${product.productCode}"/>">WHAT</a> 
                                       <td><c:out value="${product.productCode}"/></td> 
                                       <td><c:out value="${product.productName}"/></td> 
                                       <td><c:out value="${product.packageType}"/></td> 

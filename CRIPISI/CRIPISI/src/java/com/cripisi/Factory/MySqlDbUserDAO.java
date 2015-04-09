@@ -26,12 +26,15 @@ public class MySqlDbUserDAO implements UserDAO {
     private static final String SQL_UPDATE_DISABLE_USER  = "update user set flag = 0 where userID = ?";
     private static final String SQL_CHANGE_PASSWORD_USER = "update user set password = ? where userID = ?";
     private static final String SQL_CREATE_NEW_USER = "insert into user(username,password) values (?,?)";
-    private static final String SQL_GET_RIGHTS = "select a.action, a.flag\n"+
+    private static final String SQL_GET_RIGHTS = "select u.userId, a.action, a.flag, a.roleId\n"+
                                                  "from user u join user_has_group ug on u.userId = ug.userId\n"+
-                                                  "join user_has_group g on g.groupId = ug.groupId\n"+
-                                                    "join role r on r.groupId = g.groupId\n"+
+                                                    "join role r on r.groupId = ug.groupId\n"+
                                                     "join action a on a.roleId = r.roleId\n"+
-                                                    "where username = ? and password = ?";
+                                                    "where username = ? and password = ? and u.flag = ?";
+   private static final String SQL_GET_ROLE = "select r.roleId\n" +
+                                              "from user u join user_has_group ug on u.userId = ug.userId\n" +
+                                              "join role r on r.groupId = ug.groupId\n" +
+                                              "where username = ? and password = ? and u.flag = ?";
     
     /** Get a list of user accounts for system administrators 
      */
@@ -78,11 +81,16 @@ public class MySqlDbUserDAO implements UserDAO {
             PreparedStatement pstmt = MySqlDbDAOFactory.createConnection().prepareStatement(SQL_GET_RIGHTS);
             pstmt.setString(1, user1.getUsername());
             pstmt.setString(2, user1.getPassword());
+            pstmt.setInt(3, 1);
             ResultSet rs = pstmt.executeQuery();
-              while (rs.next()){
-                valid = true;
+            if(rs.next()){  
+                 valid = true;
+                 rights.put("userId", rs.getInt("userId"));
+                 rights.put("role", rs.getInt("roleId"));
+            while (rs.next()){
                 rights.put(rs.getString("action"), rs.getInt("flag"));
               }
+            }
         } catch (SQLException ex) {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
@@ -200,15 +208,14 @@ public class MySqlDbUserDAO implements UserDAO {
          ResultSet rs = null;
         ArrayList<User> searches = new ArrayList<>();
         try {   
-             String query = "select * from users where name = ? and password = ?";
+             String query = "select * from users where username = ? and password = ?";
             PreparedStatement pstmt = MySqlDbDAOFactory.createConnection().prepareStatement(query);
             pstmt.setString(1, user1.getUsername());
             pstmt.setString(2, user1.getPassword());
             rs = pstmt.executeQuery();
             while(rs.next()){
                 User two = new User();
-                two.setUsername(rs.getString("name"));
-                two.setPassword(rs.getString("password"));
+                two.setUserId(rs.getInt("userId"));
                 searches.add(two);
             }
         } catch (SQLException ex) {
@@ -223,5 +230,7 @@ public class MySqlDbUserDAO implements UserDAO {
     }
          return searches.get(0);
     }
+    
+    
     
 }

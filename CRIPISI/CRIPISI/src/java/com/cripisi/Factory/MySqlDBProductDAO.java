@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author Dea
  */
-class MySqlDbProductDAO implements ProductDAO{
+class MySqlDBProductDAO implements ProductDAO{
 
     public static final String SQL_ADD_ITEM= "insert into product(productCode, supplierID, productName, package, netWeightPerPackage, quantity) values(?,?,?,?,?,?)";
     public static final String SQL_GET_LIST="Select * from product";
@@ -29,7 +29,7 @@ class MySqlDbProductDAO implements ProductDAO{
     public void addItem(Product two) {
     try {
             PreparedStatement pstmst = MySqlDbDAOFactory.createConnection().prepareStatement(SQL_ADD_ITEM);
-            pstmst.setInt(1, two.getProductCode());
+            pstmst.setString(1, two.getProductCode());
             pstmst.setString(2, two.getSupplierID());
             pstmst.setString(3, two.getProductName());
             pstmst.setString(4, two.getPackageType());
@@ -37,7 +37,7 @@ class MySqlDbProductDAO implements ProductDAO{
             
             
         } catch (SQLException ex) {
-            Logger.getLogger(MySqlDbProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySqlDBProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }  
     }
 
@@ -53,17 +53,18 @@ class MySqlDbProductDAO implements ProductDAO{
              {
                  Product two = new Product();
                  two.setProductName(rs.getString("productName"));
-                 two.setProductCode(rs.getInt("productCode"));
+                 two.setProductCode(rs.getString("productCode"));
                  two.setQuantity(Integer.parseInt(rs.getString("quantity")));
                  two.setPackageType(rs.getString("package"));
-                 two.setNetWeightPerPackage(Integer.parseInt(rs.getString("netweightperpackage")));
+                 two.setNetWeightPerPackage(Integer.parseInt(rs.getString("net_weight_per_package")));
+                 two.setMSRP(rs.getInt("MSRP"));
                  searches.add(two);
                  
              }
              
              MySqlDbDAOFactory.createConnection().close();
         } catch (SQLException ex) {
-            Logger.getLogger(MySqlDbProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySqlDBProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
       
        return searches;
@@ -83,7 +84,7 @@ class MySqlDbProductDAO implements ProductDAO{
              {
                  Product two = new Product();
                  two.setProductName(rs.getString("productName"));
-                 two.setProductCode(rs.getInt("productCode"));
+                 two.setProductCode(rs.getString("productCode"));
                  two.setQuantity(rs.getInt("quantity"));
                  two.setPackageType(rs.getString("package"));
                  two.setNetWeightPerPackage(rs.getInt("netweightperpackage"));
@@ -93,7 +94,7 @@ class MySqlDbProductDAO implements ProductDAO{
              //System.out.println(searches.get(0).getProductName());
              MySqlDbDAOFactory.createConnection().close();
         } catch (SQLException ex) {
-            Logger.getLogger(MySqlDbProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySqlDBProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
       
        return searches;
@@ -107,12 +108,12 @@ class MySqlDbProductDAO implements ProductDAO{
             pstmt.setInt(1, one.getQuantity());
             pstmt.executeQuery();
         } catch (SQLException ex) {
-            Logger.getLogger(MySqlDbProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MySqlDBProductDAO.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
              try {
                  MySqlDbDAOFactory.createConnection().close();
              } catch (SQLException ex) {
-                 Logger.getLogger(MySqlDbProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(MySqlDBProductDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
         }
     }

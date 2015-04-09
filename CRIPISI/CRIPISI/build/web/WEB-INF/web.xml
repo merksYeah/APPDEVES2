@@ -8,6 +8,8 @@
         <filter-name>AuthFilter</filter-name>
         <servlet-name>Search</servlet-name>
         <servlet-name>PreLoadInventory</servlet-name>
+        <servlet-name>ToSalesOrder</servlet-name>
+        <servlet-name>CreateSalesOrder</servlet-name>
     </filter-mapping>
     <servlet>
         <servlet-name>Login</servlet-name>
@@ -37,6 +39,14 @@
         <servlet-name>ToRegister</servlet-name>
         <servlet-class>ToRegister</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ToSalesOrder</servlet-name>
+        <servlet-class>ToSalesOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateSalesOrder</servlet-name>
+        <servlet-class>CreateSalesOrder</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -64,6 +74,14 @@
     <servlet-mapping>
         <servlet-name>ToRegister</servlet-name>
         <url-pattern>/ToRegister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ToSalesOrder</servlet-name>
+        <url-pattern>/ToSalesOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateSalesOrder</servlet-name>
+        <url-pattern>/CreateSalesOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

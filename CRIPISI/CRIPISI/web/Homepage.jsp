@@ -1,3 +1,10 @@
+<%-- 
+    Document   : SalesAgentTemplate
+    Created on : 04 9, 15, 1:21:45 PM
+    Author     : deathman28
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -33,7 +40,7 @@
   <body>
 
   <section id="container" >
-     <%@include file="Template.jsp"%>
+     <%@include file="LoadTemplate.jsp"%>
       <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->

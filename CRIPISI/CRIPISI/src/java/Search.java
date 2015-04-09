@@ -43,7 +43,7 @@ public class Search extends HttpServlet {
                 RequestDispatcher rd = null;
                 Product one = new Product();
                one.setProductName(request.getParameter("productname"));
-               one.setProductCode(request.getParameter("productname"));
+               one.setProductCode(request.getParameter("productCode"));
                 ProductDB db = new ProductDB();
                  ArrayList<Product> products = db.searchList(one);
                  request.setAttribute("products", products);

@@ -14,14 +14,53 @@ import java.util.ArrayList;
  */
 public class SalesOrder {
     private int SalesOrderID;
-    private int clientID;
-    private int status;
+    private int customer_tin;
+    private String statusCode;
+
+    public void setCustomer_tin(int customer_tin) {
+        this.customer_tin = customer_tin;
+    }
+
+    public void setStatusCode(String statusCode) {
+        this.statusCode = statusCode;
+    }
+
+    
+
+    public int getCustomer_tin() {
+        return customer_tin;
+    }
+
+    public String getStatusCode() {
+        return statusCode;
+    }
+
+   
     private Date order_date;
     private Date due_date;
     private String deliver_to;
     private Date date_delivered;
     private String comments;
-    private ArrayList<Product> orders;
+
+    public String[] getProducts() {
+        return products;
+    }
+
+    public void setProducts(String[] products) {
+        this.products = products;
+    }
+
+   
+    private String[] products;
+
+    public String[] getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String[] quantity) {
+        this.quantity = quantity;
+    }
+    private String[] quantity;
     private int flag;
 
     public int getSalesOrderID() {
@@ -33,20 +72,14 @@ public class SalesOrder {
     }
 
     public int getClientID() {
-        return clientID;
+        return customer_tin;
     }
 
     public void setClientID(int clientID) {
-        this.clientID = clientID;
+        this.customer_tin = clientID;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
+   
 
     public Date getOrder_date() {
         return order_date;
@@ -88,13 +121,7 @@ public class SalesOrder {
         this.comments = comments;
     }
     
-    public ArrayList<Product> getProducts(){
-        return orders;
-    }
     
-    public void setProducts(ArrayList<Product> neworders){
-        this.orders=neworders;
-    }
     
     public int getFlag(){
         return flag;

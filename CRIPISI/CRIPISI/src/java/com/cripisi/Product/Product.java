@@ -10,17 +10,34 @@ package com.cripisi.Product;
  * @author deathman28
  */
 public class Product {
-    private int productCode;
+    private String productCode;
     private String supplierID;
     private String productName;
     private String packageType;
     private int netweight,quantity;
+
+    public int getNetweight() {
+        return netweight;
+    }
+
+    public int getMSRP() {
+        return MSRP;
+    }
+
+    public void setNetweight(int netweight) {
+        this.netweight = netweight;
+    }
+
+    public void setMSRP(int MSRP) {
+        this.MSRP = MSRP;
+    }
+    private int MSRP;
     
     /*private int productCode;
       private String productName;
       private String productcol;
     */
-    public void setProductCode(int newProductCode)
+    public void setProductCode(String newProductCode)
     {
         productCode = newProductCode;
     }
@@ -50,7 +67,7 @@ public class Product {
         netweight = newNetWeightPerPackage;
     }
     
-    public int getProductCode()
+    public String getProductCode()
     {
         return productCode;
     }

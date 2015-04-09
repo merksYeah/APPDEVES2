@@ -4,14 +4,17 @@
  * and open the template in the editor.
  */
 
+import com.cripisi.Customer.Customer;
+import com.cripisi.Customer.CustomerDAO;
 import com.cripisi.Factory.DAOFactory;
-import com.cripisi.User.User;
+import com.cripisi.Product.Product;
+import com.cripisi.Product.ProductDAO;
 import com.cripisi.User.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +25,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author deathman28
  */
-public class Login extends HttpServlet {
+public class ToSalesOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,30 +40,23 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-              RequestDispatcher rd = null;
-                User one = new User();
-               one.setUsername(request.getParameter("username"));
-               one.setPassword(request.getParameter("password"));
+            /* TODO output your page here. You may use following sample code. */  
+            RequestDispatcher rd = null;
+               HttpSession session = request.getSession();
+               HashMap<String,Integer> rights = (HashMap<String,Integer>)session.getAttribute("login");
+               Customer one = new Customer();
+               one.setUserId(rights.get("userId"));
+               System.out.println(one.getUserId());
                DAOFactory what =  DAOFactory.getDAOFactory(1);
-               UserDAO db = what.getUserDAO();
-               HashMap<String,Integer> rights = db.login(one);
-               if(rights != null)
-               {
-                   HttpSession session = request.getSession();
-                   session.setAttribute("login", rights);
-                   rd = request.getRequestDispatcher("Homepage.jsp");  
-                   rd.forward(request,response);
-               }
-               else
-               {
-                   ServletContext context= getServletContext();
-                   rd= context.getRequestDispatcher("/index.jsp");
-                   rd.forward(request, response);
-               }
-               
-               
-    }
+               CustomerDAO db = what.getCustomerDAO();
+               one = db.getCustomerOrderDetails(one);
+               ProductDAO db1 = what.getProductDAO();
+               ArrayList<Product> products = db1.getList();
+               request.setAttribute("products", products);
+               request.setAttribute("Customer", one);
+               rd = request.getRequestDispatcher("NewSalesOrder.jsp");
+               rd.forward(request,response);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -100,5 +96,6 @@ public class Login extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold
+    }// </editor-fold>
+
 }

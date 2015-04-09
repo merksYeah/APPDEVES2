@@ -26,5 +26,7 @@ public interface UserDAO {
     public void insertUser(User user1);
 
     public User getUserById(User user1);
+    
+
 
 }

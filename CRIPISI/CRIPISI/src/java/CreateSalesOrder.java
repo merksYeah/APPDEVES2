@@ -5,24 +5,25 @@
  */
 
 import com.cripisi.Factory.DAOFactory;
-import com.cripisi.User.User;
-import com.cripisi.User.UserDAO;
+import com.cripisi.SalesOrder.SalesOrder;
+import com.cripisi.SalesOrder.SalesOrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
+import java.sql.Date;
+import java.text.ParseException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author deathman28
  */
-public class Login extends HttpServlet {
+public class CreateSalesOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,33 +35,27 @@ public class Login extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-              RequestDispatcher rd = null;
-                User one = new User();
-               one.setUsername(request.getParameter("username"));
-               one.setPassword(request.getParameter("password"));
-               DAOFactory what =  DAOFactory.getDAOFactory(1);
-               UserDAO db = what.getUserDAO();
-               HashMap<String,Integer> rights = db.login(one);
-               if(rights != null)
-               {
-                   HttpSession session = request.getSession();
-                   session.setAttribute("login", rights);
-                   rd = request.getRequestDispatcher("Homepage.jsp");  
-                   rd.forward(request,response);
-               }
-               else
-               {
-                   ServletContext context= getServletContext();
-                   rd= context.getRequestDispatcher("/index.jsp");
-                   rd.forward(request, response);
-               }
-               
-               
-    }
+            RequestDispatcher rd = null;
+           String[] Products = request.getParameterValues("checkedRows");
+           String[] Quantity = request.getParameterValues("orderquantity");
+           SalesOrder order = new SalesOrder();
+           order.setCustomer_tin(Integer.parseInt(request.getParameter("customertin")));
+           order.setDeliver_to(request.getParameter("address"));
+           Date d = java.sql.Date.valueOf(request.getParameter("orderdate"));
+           order.setOrder_date(d);
+           DAOFactory what =  DAOFactory.getDAOFactory(1);
+           SalesOrderDAO so = what.getSalesOrderDAO();
+           int ordernumber = so.newSalesOrder(order);
+           order.setSalesOrderID(ordernumber);
+           order.setProducts(Products);
+           order.setQuantity(Quantity);
+           so.addProducts(order);
+           
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -75,7 +70,11 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(CreateSalesOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -89,7 +88,11 @@ public class Login extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(CreateSalesOrder.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -100,5 +103,6 @@ public class Login extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold
+    }// </editor-fold>
+
 }

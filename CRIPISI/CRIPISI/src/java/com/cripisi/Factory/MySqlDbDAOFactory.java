@@ -5,7 +5,10 @@
  */
 package com.cripisi.Factory;
 
+import com.cripisi.Customer.CustomerDAO;
 import com.cripisi.Employee.EmployeeDAO;
+import com.cripisi.Product.ProductDAO;
+import com.cripisi.SalesOrder.SalesOrderDAO;
 
 import com.cripisi.User.UserDAO;
 import java.sql.Connection;
@@ -54,6 +57,21 @@ public class MySqlDbDAOFactory extends DAOFactory {
   public EmployeeDAO getEmployeeDAO(){
       return new MySqlDBEmployeeDAO();
   }
+
+    @Override
+    public CustomerDAO getCustomerDAO() {
+      return new MySqlDBCustomerDAO();
+    }
+    
+    @Override
+    public ProductDAO getProductDAO() {
+      return new MySqlDBProductDAO();
+    }
+    
+     @Override
+    public SalesOrderDAO getSalesOrderDAO() {
+      return new MySqlDBSalesOrderDAO();
+    }
   
 
     

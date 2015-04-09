@@ -5,7 +5,10 @@
  */
 package com.cripisi.Factory;
 
+import com.cripisi.Customer.CustomerDAO;
 import com.cripisi.Employee.EmployeeDAO;
+import com.cripisi.Product.ProductDAO;
+import com.cripisi.SalesOrder.SalesOrderDAO;
 import com.cripisi.User.UserDAO;
 import java.sql.Connection;
 
@@ -18,6 +21,9 @@ public abstract class DAOFactory {
    
   public abstract UserDAO getUserDAO();
   public abstract EmployeeDAO getEmployeeDAO();
+  public abstract CustomerDAO getCustomerDAO();
+  public abstract ProductDAO getProductDAO();
+  public abstract SalesOrderDAO getSalesOrderDAO();
 
     
    public static DAOFactory getDAOFactory(int whichFactory){

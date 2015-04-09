@@ -15,7 +15,7 @@ public interface SalesOrderDAO {
     
     public ArrayList<Product> getOrderedProducts(SalesOrder so);
     
-    public void newSalesOrder(SalesOrder so);
+    public int newSalesOrder(SalesOrder so);
     
     public void addProducts(SalesOrder so);
     
