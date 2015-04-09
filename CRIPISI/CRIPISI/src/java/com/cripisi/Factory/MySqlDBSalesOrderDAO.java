@@ -61,19 +61,21 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
         ResultSet rs = null;
         boolean value = false;
         int key = 0;
+        Connection conn = MySqlDbDAOFactory.createConnection();
         try {
-            
-                PreparedStatement pstmt = MySqlDbDAOFactory.createConnection().prepareStatement(SQL_NEW_SALES_ORDER,PreparedStatement.RETURN_GENERATED_KEYS);
+                conn.setAutoCommit(false);
+                PreparedStatement pstmt = conn.prepareStatement(SQL_NEW_SALES_ORDER,PreparedStatement.RETURN_GENERATED_KEYS);
                 pstmt.setInt(1, so.getCustomer_tin());
                 pstmt.setString(2, so.getDeliver_to());
                 pstmt.setDate(3, so.getOrder_date());
                 pstmt.executeUpdate();
+                conn.commit();
                 rs = pstmt.getGeneratedKeys();
             } catch (SQLException ex) {
                 Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
             }finally{
                  try {
-                    MySqlDbDAOFactory.createConnection().close();
+                    conn.close();
                  } catch (SQLException ex) {
                      Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
                  }
@@ -116,7 +118,7 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
                 Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
             }finally{
                  try {
-                    MySqlDbDAOFactory.createConnection().close();
+                    conn.close();
                  } catch (SQLException ex) {
                      Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
                  }

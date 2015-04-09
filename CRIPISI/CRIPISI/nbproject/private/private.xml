@@ -3,22 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/CreateSalesOrder.java</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/com/cripisi/Factory/MySqlDbDAOFactory.java</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/ToSalesOrder.java</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/web/Register.jsp</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/com/cripisi/Product/Product.java</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/web/inventoryList.jsp</file>
             <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/web/NewSalesOrder.jsp</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/com/cripisi/Factory/MySqlDbSalesOrderDAO.java</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/com/cripisi/Factory/MySqlDBProductDAO.java</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/com/cripisi/Factory/MySqlDBCustomerDAO.java</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/Search.java</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/nbproject/build-impl.xml</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/com/cripisi/Customer/Customer.java</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/com/cripisi/Factory/MySqlDbUserDAO.java</file>
+            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/CreateSalesOrder.java</file>
+            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/ToSalesOrder.java</file>
+            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/com/cripisi/SalesOrder/SalesOrderDAO.java</file>
+            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/web/ClientTemplate.jsp</file>
             <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/Login.java</file>
+            <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/com/cripisi/Factory/MySqlDBSalesOrderDAO.java</file>
             <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/com/cripisi/SalesOrder/SalesOrder.java</file>
         </group>
     </open-files>

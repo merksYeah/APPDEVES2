@@ -7,6 +7,7 @@ package com.cripisi.Factory;
 
 import com.cripisi.User.User;
 import com.cripisi.User.UserDAO;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -77,8 +78,9 @@ public class MySqlDbUserDAO implements UserDAO {
     public HashMap<String,Integer> login(User user1){
         boolean valid = false; 
         HashMap<String,Integer> rights = new HashMap<String,Integer>();
+        Connection conn = MySqlDbDAOFactory.createConnection();
          try {   
-            PreparedStatement pstmt = MySqlDbDAOFactory.createConnection().prepareStatement(SQL_GET_RIGHTS);
+            PreparedStatement pstmt = conn.prepareStatement(SQL_GET_RIGHTS);
             pstmt.setString(1, user1.getUsername());
             pstmt.setString(2, user1.getPassword());
             pstmt.setInt(3, 1);
@@ -95,7 +97,7 @@ public class MySqlDbUserDAO implements UserDAO {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
              try {
-                 MySqlDbDAOFactory.createConnection().close();
+                 conn.close();
              } catch (SQLException ex) {
                  Logger.getLogger(MySqlDbUserDAO.class.getName()).log(Level.SEVERE, null, ex);
              }

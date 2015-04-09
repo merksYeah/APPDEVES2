@@ -7,6 +7,7 @@ package com.cripisi.Factory;
 
 import com.cripisi.Product.Product;
 import com.cripisi.Product.ProductDAO;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -46,8 +47,9 @@ class MySqlDBProductDAO implements ProductDAO{
        ResultSet rs = null;
         ArrayList<Product> searches = new ArrayList<>();
        PreparedStatement pstmst;
+       Connection conn = MySqlDbDAOFactory.createConnection();
         try {
-            pstmst = MySqlDbDAOFactory.createConnection().prepareStatement(SQL_GET_LIST);
+            pstmst = conn.prepareStatement(SQL_GET_LIST);
              rs = pstmst.executeQuery();
              while(rs.next())
              {
@@ -62,10 +64,16 @@ class MySqlDBProductDAO implements ProductDAO{
                  
              }
              
-             MySqlDbDAOFactory.createConnection().close();
+             
         } catch (SQLException ex) {
             Logger.getLogger(MySqlDBProductDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }finally{
+                 try {
+                    conn.close();
+                 } catch (SQLException ex) {
+                     Logger.getLogger(MySqlDBProductDAO.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+            }
       
        return searches;
     }

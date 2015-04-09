@@ -46,7 +46,6 @@ public class ToSalesOrder extends HttpServlet {
                HashMap<String,Integer> rights = (HashMap<String,Integer>)session.getAttribute("login");
                Customer one = new Customer();
                one.setUserId(rights.get("userId"));
-               System.out.println(one.getUserId());
                DAOFactory what =  DAOFactory.getDAOFactory(1);
                CustomerDAO db = what.getCustomerDAO();
                one = db.getCustomerOrderDetails(one);

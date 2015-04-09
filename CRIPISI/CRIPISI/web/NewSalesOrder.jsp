@@ -19,9 +19,6 @@
 	
 <link href="assets/css/bootstrap.css" rel="stylesheet">
     <!--external css-->
-    <link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="assets/js/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-        
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
@@ -34,8 +31,8 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/style.css" rel="stylesheet">
     <link href="assets/css/style-responsive.css" rel="stylesheet">
-    <link href="assets/css/jquery-ui.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.css">
+    <link href="assets/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="assets/DataTables-1.10.6/media/css/jquery.dataTables.min.css">
    
   </head>
 
@@ -137,56 +134,21 @@
                     </div>
                     </div><!-- col-lg-12-->      
                     </div><!-- /row -->
-			
-							 <div class = "row">
-								<div class = "col-lg-12 col-sm-12 ">
-								  <span class = "pull-right">
-									<button data-toggle="modal" href="NewPurchaseOrder.html#myModal" class="btn btn-theme" type="button">Proceed</button>
-								</span>
-								</div>
-							</div>
-          	
-            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-		              <div class="modal-dialog">
-		                  <div class="modal-content">
-		                      <div class="modal-header">
-		                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		                          <h4 class="modal-title">Proceed to product information</h4>
-		                      </div>
-		                      <div class="modal-body">
-		                          <p>Is the information entered below correct?</p>
-		                      </div>
-		                      <div class="modal-footer">
-		                          <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-		                          <a class="btn btn-theme btn-link" type="button" href = "ProductSelect.html">Proceed</a>
-		                      </div>
-		                  </div>
-		              </div>
-		          </div>
-          	
-          	
-          	
-          	
-          	
 		</section><! --/wrapper -->
       </section><!-- /MAIN CONTENT -->
 
       <!--main content end-->
       
   </section>
- <script src="assets/js/jquery.js"></script>
-    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>
-	<script src="assets/js/fullcalendar/fullcalendar.min.js"></script>    
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/jquery-ui-1.9.2.custom.min.js"></script>	   
     <script src="assets/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js"></script>
     <script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-
-
-
     <!--common script for all pages-->
     <script src="assets/js/common-scripts.js"></script>
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
+    <script src="assets/DataTables-1.10.6/media/js/jquery.dataTables.min.js"></script>
             
  <script>
         $(document).ready( function () {
