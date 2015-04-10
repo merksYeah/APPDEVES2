@@ -5,14 +5,12 @@
  */
 
 import com.cripisi.Factory.DAOFactory;
+import com.cripisi.Product.Product;
 import com.cripisi.SalesOrder.SalesOrder;
 import com.cripisi.SalesOrder.SalesOrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Date;
-import java.text.ParseException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author deathman28
  */
-public class CreateSalesOrder extends HttpServlet {
+public class ShowOrderDetails extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,25 +33,21 @@ public class CreateSalesOrder extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, ParseException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            RequestDispatcher rd = null;
-           String[] Products = request.getParameterValues("checkedRows");
-           String[] Quantity = request.getParameterValues("orderquantity");
-           SalesOrder order = new SalesOrder();
-           order.setCustomer_tin(Integer.parseInt(request.getParameter("customertin")));
-           order.setDeliver_to(request.getParameter("address"));
-           Date d = java.sql.Date.valueOf(request.getParameter("orderdate"));
-           order.setOrder_date(d);
-           DAOFactory what =  DAOFactory.getDAOFactory(1);
-           SalesOrderDAO so = what.getSalesOrderDAO();
-           int ordernumber = so.newSalesOrder(order);
-           order.setOrder_id(ordernumber);
-           order.setProducts(Products);
-           order.setQuantity(Quantity);
-           so.addProducts(order);
+           RequestDispatcher rd = null;
+            SalesOrder so = new SalesOrder();
+           so.setOrder_id(Integer.parseInt(request.getParameter("orderid")));
+           DAOFactory db = DAOFactory.getDAOFactory(1);
+           SalesOrderDAO db1 = db.getSalesOrderDAO();
+           ArrayList<Product> products = db1.getOrderDetailsByOrder(so);
+           request.setAttribute("products",products);
+           request.setAttribute("order",so);
+           rd = request.getRequestDispatcher("SODetails.jsp");  
+           rd.forward(request,response);
+           
            
         }
     }
@@ -70,11 +64,7 @@ public class CreateSalesOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(CreateSalesOrder.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -88,11 +78,7 @@ public class CreateSalesOrder extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (ParseException ex) {
-            Logger.getLogger(CreateSalesOrder.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        processRequest(request, response);
     }
 
     /**

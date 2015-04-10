@@ -51,6 +51,10 @@
         <servlet-name>ToList</servlet-name>
         <servlet-class>ToList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowOrderDetails</servlet-name>
+        <servlet-class>ShowOrderDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -90,6 +94,10 @@
     <servlet-mapping>
         <servlet-name>ToList</servlet-name>
         <url-pattern>/ToList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowOrderDetails</servlet-name>
+        <url-pattern>/ShowOrderDetails</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

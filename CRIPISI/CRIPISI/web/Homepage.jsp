@@ -4,7 +4,11 @@
     Author     : deathman28
 --%>
 
+<<<<<<< HEAD
 <%--<%@page contentType="text/html" pageEncoding="UTF-8"%>--%>
+=======
+
+>>>>>>> e690f4618aacb800c111d177a53acd52e7753bed
 <!DOCTYPE html>
 <html lang="en">
   <head>

@@ -4,13 +4,21 @@
  * and open the template in the editor.
  */
 
+import com.cripisi.Customer.Customer;
+import com.cripisi.Customer.CustomerDAO;
+import com.cripisi.Factory.DAOFactory;
+import com.cripisi.SalesOrder.SalesOrder;
+import com.cripisi.SalesOrder.SalesOrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,9 +40,19 @@ public class ToList extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-             RequestDispatcher rd = null;
-             rd = request.getRequestDispatcher("PurchaseOrderList.jsp");
-               rd.forward(request,response);
+            RequestDispatcher rd = null;
+            HttpSession session = request.getSession();
+            HashMap<String,Integer> rights = (HashMap<String,Integer>) session.getAttribute("login");
+            Customer one = new Customer();
+            one.setUserId(rights.get("userId"));
+            DAOFactory what =  DAOFactory.getDAOFactory(1);
+            CustomerDAO db = what.getCustomerDAO();
+            one = db.getCustomerOrderDetails(one);
+            SalesOrderDAO db1 = what.getSalesOrderDAO();
+            ArrayList<SalesOrder> orders = db1.getSalesOrdersByCustomer(one);
+            request.setAttribute("orders",orders);
+            rd = request.getRequestDispatcher("PurchaseOrderList.jsp");
+            rd.forward(request,response);
         }
     }
 

@@ -4,7 +4,7 @@
     Author     : deathman28
 --%>
 
-
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -51,12 +51,8 @@
 	                  	  	  <hr>
                               <thead>
                               <tr>
-                                  <th><i class="fa fa-barcode"></i> S.O.ID</th>
-                                  <th class="hidden-phone"><i class="fa fa-truck"></i> Deliver To</th>
-                                  <th><i class="fa fa-calendar"></i> Date Issued</th>
-                                  <th><i class=" fa fa-calendar"></i> Order Date</th>
-                                  <th><i class=" fa fa-calendar"></i> Delivery Date</th>
-                                  <th><i class=" fa fa-edit"></i> Status</th>
+                                  <th><i class="fa fa-barcode"></i> Prouduct Code</th>
+                                  <th class="hidden-phone"><i class="fa fa-truck"></i> Order Quantity</th>
                               </tr>
                               </thead>
                               <tbody>
@@ -64,11 +60,6 @@
                                    <tr>
                                           <td><a href="ShowOrderDetails?orderid=<c:out value="${SalesOrder.order_id}"/>"><c:out value="${SalesOrder.order_id}"/></td>
                                           <td><c:out value="${SalesOrder.deliver_to}"/></td>
-                                          <td><c:out value="${SalesOrder.date_issued}"/></td>
-                                          <td><c:out value="${SalesOrder.order_date}"/></td>
-                                          <td><c:out value="${SalesOrder.date_delivered}"/></td>
-                                          <td><c:out value="${SalesOrder.statusCode}"/></td>
-                                          
                                   </tr>
                                   </c:forEach>
                                   
