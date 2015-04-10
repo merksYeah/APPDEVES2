@@ -1,0 +1,21 @@
+SMAP
+PuchaseOrderList_jsp.java
+JSP
+*S JSP
+*F
++ 0 PuchaseOrderList.jsp
+PuchaseOrderList.jsp
++ 1 LoadTemplate.jsp
+LoadTemplate.jsp
++ 2 ClientTemplate.jsp
+ClientTemplate.jsp
+*L
+5,30:60
+1#1,4:90
+5:303,8
+6:311
+5#2,211:312
+6#1,2:523
+7,4:96
+34#0,186:100
+*E

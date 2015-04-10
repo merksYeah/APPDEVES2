@@ -47,6 +47,10 @@
         <servlet-name>CreateSalesOrder</servlet-name>
         <servlet-class>CreateSalesOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ToList</servlet-name>
+        <servlet-class>ToList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -82,6 +86,10 @@
     <servlet-mapping>
         <servlet-name>CreateSalesOrder</servlet-name>
         <url-pattern>/CreateSalesOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ToList</servlet-name>
+        <url-pattern>/ToList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

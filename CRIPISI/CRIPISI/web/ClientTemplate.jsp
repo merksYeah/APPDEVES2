@@ -198,7 +198,7 @@
 							  </a>
 						  </li>
                            <li>
-						  <a  href="MyPurchaseOrderList.html">
+						  <a  href="ToList">
 						  <i class="fa fa-file-o"></i>
 							<span>My Purchase Order List</span>
 						</a>
