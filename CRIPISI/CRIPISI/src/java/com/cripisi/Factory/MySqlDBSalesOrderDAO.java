@@ -69,8 +69,12 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
                 pstmt.setString(2, so.getDeliver_to());
                 pstmt.setDate(3, so.getOrder_date());
                 pstmt.executeUpdate();
-                conn.commit();
                 rs = pstmt.getGeneratedKeys();
+                conn.commit();
+                if(rs.next()){
+                value = true;
+                key = rs.getInt(1);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
             }finally{
@@ -80,14 +84,7 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
                      Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
                  }
             }
-        try {
-            if(rs.next()){
-            value = true;
-            key = rs.getInt(1);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MySqlDBSalesOrderDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
         if(value){
              return key;
         }

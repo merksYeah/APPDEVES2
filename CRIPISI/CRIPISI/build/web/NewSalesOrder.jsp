@@ -84,7 +84,7 @@
                             </div>
                             <div class ="form-group" >
                                 <label class="col-lg-2 col-sm-2 control-label">Delivery Date</label>
-                                <div class = col-lg-6>
+                                <div class = col-lg-2>
                                     <input  name ="orderdate" id = "datepicker" type = "input" class="form-control" rows="1"  required>
                                 </div>
                              </div>
