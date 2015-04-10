@@ -33,7 +33,6 @@
     <link href="assets/css/style-responsive.css" rel="stylesheet">
     <link href="assets/jquery-ui-1.11.4.custom/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" type="text/css" href="assets/DataTables-1.10.6/media/css/jquery.dataTables.min.css">
-   
   </head>
 
   <body>
@@ -152,7 +151,11 @@
             
  <script>
         $(document).ready( function () {
-    $('#what').DataTable();
+    $('#what').DataTable({
+      
+        "scrollCollapse": true,
+        "jQueryUI":       false
+    });
     } );
     </script>
 	

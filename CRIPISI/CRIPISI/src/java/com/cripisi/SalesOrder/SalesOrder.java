@@ -13,7 +13,15 @@ import java.util.ArrayList;
  * @author Dea
  */
 public class SalesOrder {
-    private int SalesOrderID;
+    private int order_id;
+
+    public int getOrder_id() {
+        return order_id;
+    }
+
+    public void setOrder_id(int order_id) {
+        this.order_id = order_id;
+    }
     private int customer_tin;
     private String statusCode;
 
@@ -37,10 +45,21 @@ public class SalesOrder {
 
    
     private Date order_date;
-    private Date due_date;
+
+    public Date getDate_issued() {
+        return date_issued;
+    }
+
+    public void setDate_issued(Date date_issued) {
+        this.date_issued = date_issued;
+    }
+    private Date date_issued;
     private String deliver_to;
     private Date date_delivered;
     private String comments;
+    private String[] products;
+    private String[] quantity;
+    private int flag;
 
     public String[] getProducts() {
         return products;
@@ -51,8 +70,6 @@ public class SalesOrder {
     }
 
    
-    private String[] products;
-
     public String[] getQuantity() {
         return quantity;
     }
@@ -60,16 +77,9 @@ public class SalesOrder {
     public void setQuantity(String[] quantity) {
         this.quantity = quantity;
     }
-    private String[] quantity;
-    private int flag;
+ 
 
-    public int getSalesOrderID() {
-        return SalesOrderID;
-    }
 
-    public void setSalesOrderID(int SalesOrderID) {
-        this.SalesOrderID = SalesOrderID;
-    }
 
     public int getClientID() {
         return customer_tin;
@@ -89,13 +99,6 @@ public class SalesOrder {
         this.order_date = order_date;
     }
 
-    public Date getDue_date() {
-        return due_date;
-    }
-
-    public void setDue_date(Date due_date) {
-        this.due_date = due_date;
-    }
 
     public String getDeliver_to() {
         return deliver_to;

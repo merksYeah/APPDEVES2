@@ -50,7 +50,7 @@ public class CreateSalesOrder extends HttpServlet {
            DAOFactory what =  DAOFactory.getDAOFactory(1);
            SalesOrderDAO so = what.getSalesOrderDAO();
            int ordernumber = so.newSalesOrder(order);
-           order.setSalesOrderID(ordernumber);
+           order.setOrder_id(ordernumber);
            order.setProducts(Products);
            order.setQuantity(Quantity);
            so.addProducts(order);

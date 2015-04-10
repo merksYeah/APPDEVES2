@@ -8,6 +8,7 @@ package com.cripisi.Factory;
 import com.cripisi.Customer.Customer;
 import com.cripisi.Customer.CustomerDAO;
 import com.cripisi.User.User;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,9 +27,10 @@ public class MySqlDBCustomerDAO implements CustomerDAO {
     public Customer getCustomerOrderDetails(Customer one) {
        ResultSet rs = null;
        ArrayList<Customer> searches = new ArrayList<Customer>();
+       Connection conn = MySqlDbDAOFactory.createConnection();
         try {   
-            
-            PreparedStatement pstmt = MySqlDbDAOFactory.createConnection().prepareStatement( SQL_GET_CUSTOMER_FORMDETAILS );
+            conn.setAutoCommit(false);
+            PreparedStatement pstmt = conn.prepareStatement( SQL_GET_CUSTOMER_FORMDETAILS );
             pstmt.setInt(1, one.getUserId());
             rs = pstmt.executeQuery();
             while(rs.next()){
@@ -37,11 +39,17 @@ public class MySqlDBCustomerDAO implements CustomerDAO {
                 two.setCompanyAddress(rs.getString("companyAddress"));
                 searches.add(two);
             }
+            conn.commit();
         } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+           try {
+               Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
+               conn.rollback();
+           } catch (SQLException ex1) {
+               Logger.getLogger(MySqlDBCustomerDAO.class.getName()).log(Level.SEVERE, null, ex1);
+           }
         }finally{
              try {
-                 MySqlDbDAOFactory.createConnection().close();
+                 conn.close();
              } catch (SQLException ex) {
                  Logger.getLogger(MySqlDbUserDAO.class.getName()).log(Level.SEVERE, null, ex);
              }
