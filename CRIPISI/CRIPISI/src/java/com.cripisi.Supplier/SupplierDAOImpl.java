@@ -1,6 +1,6 @@
 package com.cripisi;
 
-import java.db.DBConnectionFactory;
+import db.DBConnectionFactory;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

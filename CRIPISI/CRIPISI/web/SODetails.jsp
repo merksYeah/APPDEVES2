@@ -47,7 +47,9 @@
 		   <div class="row mt">
                   <div class="col-md-12">
                           <table id = "what" class="table table-bordered table-striped table-condensed">
-	                  	  	  <h4><i class="fa fa-angle-right"></i> Orders</h4>
+                                   <h4><i class="fa fa-angle-right"></i>Sales Order: <c:out value="${order.order_id}"/> </h4>
+                           	  
+                              
 	                  	  	  <hr>
                               <thead>
                               <tr>
@@ -56,10 +58,10 @@
                               </tr>
                               </thead>
                               <tbody>
-                                  <c:forEach items="${orders}" var="SalesOrder">
+                                   <c:forEach items="${products}" var="product">
                                    <tr>
-                                          <td><a href="ShowOrderDetails?orderid=<c:out value="${SalesOrder.order_id}"/>"><c:out value="${SalesOrder.order_id}"/></td>
-                                          <td><c:out value="${SalesOrder.deliver_to}"/></td>
+                                          <td><c:out value="${product.productCode}"/></td>
+                                          <td><c:out value="${product.quantity}"/></td>
                                   </tr>
                                   </c:forEach>
                                   

@@ -8,7 +8,7 @@ import java.util.logging.Level;
 
 import com.cripisi.PurchaseOrder.PurchaseOrder;
 import com.cripisi.PurchaseOrder.PurchaseOrderDAO;
-import com.sun.istack.internal.logging.Logger;
+import java.util.logging.Logger;
 
 public class MySqlDBPurchaseOrderDAO implements PurchaseOrderDAO {
 	

@@ -31,6 +31,7 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
     private static final String SQL_GET_ALL_SALES_ORDER="select * from salesorder where clientid=?";
     private static final String SQL_UPDATE_SALES_ORDER="update salesorder set status=?";
     private static final String SQL_GET_CUSTOMER_ORDERS = "select SalesOrderId,deliver_to,date_issued,order_date,date_delivered,statusCode from salesorder where customer_tin = ?";
+    private static final String SQL_GET_ORDER_ORDERDETAILS ="SELECT productCode,orderQuantity FROM salesorder_has_product where SalesOrderId = ?";
     
     @Override
     public ArrayList<Product> getOrderedProducts(SalesOrder so){
@@ -210,7 +211,7 @@ public class MySqlDBSalesOrderDAO implements SalesOrderDAO{
          ArrayList<Product> productList = new ArrayList<Product>();
           Connection conn = MySqlDbDAOFactory.createConnection();
            try {            
-             PreparedStatement pstmt = conn.prepareStatement(SQL_GET_CUSTOMER_ORDERS );
+             PreparedStatement pstmt = conn.prepareStatement(SQL_GET_ORDER_ORDERDETAILS );
                 pstmt.setInt(1,so.getOrder_id());
                	rs = pstmt.executeQuery();
                 while(rs.next()){

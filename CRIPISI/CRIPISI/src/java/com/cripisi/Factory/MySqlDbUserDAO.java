@@ -97,6 +97,7 @@ public class MySqlDbUserDAO implements UserDAO {
             Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
         }finally{
              try {
+                 if(conn != null)
                  conn.close();
              } catch (SQLException ex) {
                  Logger.getLogger(MySqlDbUserDAO.class.getName()).log(Level.SEVERE, null, ex);
