@@ -4,7 +4,7 @@
      type="javax.sql.DataSource"
      driverClassName="com.mysql.jdbc.Driver"
      username="root"
-     password="omegaman123"
+     password="Paramore1!"
      url="jdbc:mysql://localhost:3306/mydb"
      initialSize="100"
      maxActive="100"

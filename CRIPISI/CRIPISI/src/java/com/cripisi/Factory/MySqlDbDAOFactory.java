@@ -8,6 +8,7 @@ package com.cripisi.Factory;
 import com.cripisi.Customer.CustomerDAO;
 import com.cripisi.Employee.EmployeeDAO;
 import com.cripisi.Product.ProductDAO;
+import com.cripisi.PurchaseOrder.PurchaseOrderDAO;
 import com.cripisi.SalesOrder.SalesOrderDAO;
 
 import com.cripisi.User.UserDAO;
@@ -72,6 +73,13 @@ public class MySqlDbDAOFactory extends DAOFactory {
     public SalesOrderDAO getSalesOrderDAO() {
       return new MySqlDBSalesOrderDAO();
     }
+    
+    @Override
+    public PurchaseOrderDAO getPurchaseOrderDAO() {
+      return new MySqlDBPurchaseOrderDAO();
+    }
+
+    
   
 
     
