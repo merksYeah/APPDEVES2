@@ -2,10 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
             <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/web/NewSalesOrder.jsp</file>
             <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/src/java/db/ProductDB.java</file>
             <file>file:/C:/Users/deathman28/Desktop/test3/CRIPISI/CRIPISI/web/PurchaseOrderList.jsp</file>
         </group>
+>>>>>>> b3d7e2ed9d431f5eba9a9dbe14d71ccd5e4c2937
     </open-files>
 </project-private>
