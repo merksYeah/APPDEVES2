@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context antiJARLocking="true" path="/CRIPISSI">
+ <Resource name="jdbc/appsdevDB"
+     type="javax.sql.DataSource"
+     driverClassName="com.mysql.jdbc.Driver"
+     username="root"
+     password="omegaman123"
+     url="jdbc:mysql://localhost:3306/mydb"
+     initialSize="100"
+     maxActive="100"
+     maxWait="10000"
+     maxIdle="10000"/>
+</Context>
